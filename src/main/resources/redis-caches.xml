@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
+   	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+   	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<aop:aspectj-autoproxy />
+	<context:component-scan base-package="cn.tsoft.framework.redis" />
+	<!-- 配置redis连接池信息 -->
+	<bean id="poolConfigRedis" class="cn.tsoft.framework.redis.config.PoolConfig">  
+         <!-- 最大空闲连接数 -->
+         <property name="maxIdle" value="60" />
+	     <!-- 最小空闲连接数 -->
+	     <property name="minIdle"  value="60" />
+	     <!-- 最大连接数 -->
+	     <property name="maxTotal"  value="60" />
+	     <!-- 是否测试连接 -->
+	     <property name="testOnBorrow" value="true"/>
+	     <!-- 测试连接后是否返回一个连接 -->
+	     <property name="testOnReturn" value="false"/>
+	     <!-- 是否空闲时检测连接 -->
+	     <property name="testWhileIdle" value="true" />
+    </bean>  
+	
+	<!-- 配置redis客户端 -->
+    <bean id="springRedisClient" class="cn.tsoft.framework.redis.client.impl.RedisClientImpl" init-method="init">  
+        <!-- 配置redis引用的链接池配置信息 -->
+        <property name="poolConfig" ref="poolConfigRedis"/>
+        <!-- 使用的zookeeper地址信息 -->
+        <property name="zkAddress" value="192.168.0.65:2181,192.168.0.66:2181,192.168.0.67:2181"/>
+        <!-- 按照应用分配的codis名称信息 -->
+        <property name="codisProjectName" value="codis-demo"/>
+    </bean>  
+</beans>
