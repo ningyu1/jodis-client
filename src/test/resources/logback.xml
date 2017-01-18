@@ -12,7 +12,7 @@
     -->
     <!-- <property name="LOG_HOME" value="D:/peccancyTest/log" /> -->
     <!-- 应用名称：和统一配置中的项目代码保持一致（小写） -->
-    <property name="APP_NAME" value="imprest-site"/>
+    <property name="APP_NAME" value="jodis-client"/>
     <!--日志文件保留天数-->
     <property name="LOG_MAX_HISTORY" value="30"/>
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
@@ -111,7 +111,7 @@
     	<level value="info" />
     	<appender-ref ref="DORADO"/>
     </logger>
-    <logger name="com.jiuyescm.framework.redis" additivity="true">
+    <logger name="cn.tsoft.framework.redis" additivity="true">
     	<level value="debug" />
     	<appender-ref ref="JODIS"/>
     </logger>
