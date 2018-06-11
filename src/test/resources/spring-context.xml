@@ -7,7 +7,7 @@
     http://www.bstek.com/dorado/schema http://www.bstek.com/dorado/schema/spring-dorado-7.0.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.jiuyescm" />
-	<import resource="classpath*:redis-caches.xml" />
+	<context:component-scan base-package="io.github.ningyu" />
+	<import resource="classpath://spring-jodis.xml" />
 
 </beans>
